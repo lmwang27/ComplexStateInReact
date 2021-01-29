@@ -7,13 +7,21 @@ function App() {
   });
 
   function handleChange(event) {
-    const newValue = event.target.value;
-    const name = event.target.name;
-    if (name === "fName") {
-      setFName({ fName: newValue, lName: fullName.lName });
-    } else {
-      setFName({ fName: fullName.fName, lName: newValue });
-    }
+    // const newValue = event.target.value;
+    // const name = event.target.name;
+    const { value, name } = event.target;
+    // if (name === "fName") {
+    //   setFName({ fName: newValue, lName: fullName.lName });
+    // } else {
+    //   setFName({ fName: fullName.fName, lName: newValue });
+    // }
+    setFName((preValue) => {
+      if (name === "fName") {
+        return { fName: value, lName: preValue.lName };
+      } else {
+        return { fName: preValue.fName, lName: value };
+      }
+    });
   }
 
   return (
